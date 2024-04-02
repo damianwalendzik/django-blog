@@ -9,6 +9,7 @@ from .serializers import PostSerializer
 from rest_framework import status
 from django.views.generic import TemplateView
 
+
 class CRUDAPIView(generics.GenericAPIView,TemplateView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -29,11 +30,13 @@ class CRUDAPIView(generics.GenericAPIView,TemplateView):
         if pk is not None:
             post = self.get_object()
             serializer = self.get_serializer(post)
-            return Response(serializer.data)
+            #return Response(serializer.data)
         else:
             posts = self.get_queryset()
             serializer = self.get_serializer(posts, many=True)
-            return Response(serializer.data)
+            print(serializer.data)
+            #return Response(serializer.data)
+            return render(request, 'post/index.html', {"data": serializer.data})
         
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
