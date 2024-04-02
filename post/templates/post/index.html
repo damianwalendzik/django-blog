@@ -1,0 +1,21 @@
+{% extends 'post/base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}
+        <title>Posts</title>
+    {% endblock %}
+
+{% block content%}
+    </head>
+    <body>
+        <h1>List of Posts</h1>
+        <ul>
+            {% for post in posts_data %}
+            <li>{{ post.title }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
+    {% endblock %}
