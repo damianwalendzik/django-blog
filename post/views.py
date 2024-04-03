@@ -15,15 +15,7 @@ class CRUDAPIView(generics.GenericAPIView,TemplateView):
     serializer_class = PostSerializer
     template_name = 'post/index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        print(context)
-        posts = self.get_queryset()
-        serializer = PostSerializer(posts, many=True)
-        context['posts_data'] = serializer.data
-        print("Context Data:", context)  # Add this line to print the context data
 
-        return context
     
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
